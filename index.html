@@ -4,6 +4,7 @@
 <title>Lord Portfolio</title>
 
 <style>
+
 *{
 margin:0;
 padding:0;
@@ -11,15 +12,8 @@ box-sizing:border-box;
 font-family:Arial,sans-serif;
 }
 
-body{
-background:linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url("bg.jpg");
-background-size:cover;
-background-position:center;
-color:white;
-min-height:100vh;
-}
+/* ================= TOP BAR ================= */
 
-/* TOP BAR */
 .top-bar{
 position:fixed;
 top:20px;
@@ -35,9 +29,27 @@ background:linear-gradient(90deg,#00ffff,#00bcd4);
 color:black;
 font-weight:bold;
 box-shadow:0 0 15px rgba(0,255,255,0.7);
+transition:0.3s;
 }
 
-/* HERO */
+.email-btn:hover{
+transform:scale(1.1);
+}
+
+/* ================= BACKGROUND ================= */
+
+body{
+background:
+linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),
+url("bg.jpg");
+background-size:cover;
+background-position:center;
+color:white;
+min-height:100vh;
+}
+
+/* ================= HERO ================= */
+
 .hero{
 height:100vh;
 display:flex;
@@ -51,49 +63,98 @@ padding:55px;
 border-radius:25px;
 text-align:center;
 box-shadow:0 0 40px rgba(0,255,255,0.5);
+animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0);}
 }
 
 .hero-card h1{
 font-size:38px;
-margin-bottom:10px;
+margin-bottom:12px;
+letter-spacing:2px;
 }
 
-.hero-card button{
-margin-top:15px;
-padding:12px 30px;
+.typing{
+color:#00ffff;
+font-size:24px;
+height:30px;
+font-weight:bold;
+}
+
+/* ================= BUTTONS ================= */
+
+.hero-card button,
+.insta-btn{
+margin-top:18px;
+padding:14px 35px;
 border:none;
 border-radius:30px;
 cursor:pointer;
 background:linear-gradient(90deg,#00ffff,#00bcd4);
 color:black;
 font-weight:bold;
+font-size:16px;
+box-shadow:0 0 15px rgba(0,255,255,0.8);
+transition:0.3s;
 }
 
-/* SKILLS */
+.hero-card button:hover,
+.insta-btn:hover{
+transform:scale(1.1);
+}
+
+/* ================= SKILLS ================= */
+
 .skills{
 text-align:center;
 margin:40px 0;
 }
 
+.skills h2{
+margin-bottom:20px;
+letter-spacing:2px;
+color:#00ffff;
+}
+
 .skill-btn{
-padding:14px 35px;
-margin:15px;
-border-radius:30px;
+padding:12px 28px;
+margin:10px;
+border-radius:25px;
 border:none;
 cursor:pointer;
 background:linear-gradient(90deg,#00ffff,#00bcd4);
 color:black;
 font-weight:bold;
+box-shadow:0 0 15px rgba(0,255,255,0.7);
+transition:0.3s;
 }
 
-/* POPUP */
+.skill-btn:hover{
+transform:scale(1.1);
+}
+
+/* ================= BLUR ================= */
+
+.blur{
+filter:blur(10px);
+pointer-events:none;
+}
+
+/* ================= POPUP ================= */
+
 .popup{
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.7);
+background:rgba(0,0,0,0.35);
+backdrop-filter: blur(18px);
+-webkit-backdrop-filter: blur(18px);
 display:none;
 justify-content:center;
 align-items:center;
@@ -104,8 +165,10 @@ z-index:999;
 background:#111;
 padding:25px;
 border-radius:20px;
-width:90%;
+width:85%;
 max-width:900px;
+max-height:85vh;
+overflow-y:auto;
 }
 
 .close{
@@ -114,30 +177,53 @@ font-size:24px;
 cursor:pointer;
 }
 
-.video-list button{
-display:block;
-width:100%;
-margin:10px 0;
-padding:12px;
-border:none;
-border-radius:20px;
-cursor:pointer;
-background:linear-gradient(90deg,#00ffff,#00bcd4);
-color:black;
-font-weight:bold;
+/* ================= THUMBNAILS ================= */
+
+.gallery{
+display:flex;
+flex-wrap:wrap;
+gap:20px;
+justify-content:center;
+margin-top:20px;
 }
 
-iframe{
-width:100%;
-height:450px;
-margin-top:15px;
-border-radius:15px;
+.thumb{
+width:200px;
+height:130px;
+background-size:cover;
+background-position:center;
+border-radius:12px;
+cursor:pointer;
+box-shadow:0 0 15px rgba(0,255,255,0.5);
+transition:0.3s;
 }
+
+.thumb:hover{
+transform:scale(1.1);
+box-shadow:0 0 30px rgba(0,255,255,1);
+}
+
+/* ================= VIDEO ================= */
+
+video{
+width:100%;
+max-height:70vh;
+object-fit:contain;
+margin-top:20px;
+border-radius:15px;
+display:none;
+background:rgba(0,0,0,0.25);
+backdrop-filter: blur(25px);
+-webkit-backdrop-filter: blur(25px);
+box-shadow:0 0 50px rgba(0,255,255,0.8);
+}
+
 </style>
 </head>
 
 <body>
 
+<!-- EMAIL BUTTON -->
 <div class="top-bar">
 <a href="mailto:p0656265@gmail.com" class="email-btn">📧 Email</a>
 </div>
@@ -146,76 +232,112 @@ border-radius:15px;
 
 <div class="hero">
 <div class="hero-card">
+
 <h1>I'M LORD</h1>
+<div class="typing" id="typing"></div>
 
 <a href="https://wa.me/917028307127" target="_blank">
 <button>Hire Me</button>
 </a>
 
 <a href="https://www.instagram.com/cinematic_prathamesh_7" target="_blank">
-<button>Instagram</button>
+<button class="insta-btn">Instagram</button>
 </a>
 
 </div>
 </div>
 
 <div class="skills">
-<button class="skill-btn" onclick="openCategory('edit')">Video Editing</button>
-<button class="skill-btn" onclick="openCategory('animation')">2D Animation</button>
+<h2>Skills</h2>
+<button class="skill-btn" onclick="openGallery('video')">Video Editing</button>
+<button class="skill-btn" onclick="openGallery('animation')">2D Animation</button>
+<button class="skill-btn" onclick="openGallery('model')">3D Modeling</button>
 </div>
 
 </div>
+
+<!-- ================= POPUP ================= -->
 
 <div class="popup" id="popup">
 <div class="popup-box">
 
 <div class="close" onclick="closePopup()">❌</div>
 
-<div id="content"></div>
+<div id="video-gallery" class="gallery">
+<div class="thumb" style="background-image:url('thumb5.jpeg')" onclick="playVideo('video5.mp4')"></div>
+<div class="thumb" style="background-image:url('thumb1.jpg')" onclick="playVideo('video1.mp4')"></div>
+<div class="thumb" style="background-image:url('thumb2.jpg')" onclick="playVideo('video2.mp4')"></div>
+<div class="thumb" style="background-image:url('client1.jpg')" onclick="playVideo('client1.mp4')"></div>
+<div class="thumb" style="background-image:url('client2.jpeg')" onclick="playVideo('client2.mp4')"></div>
+</div>
+
+<div id="animation-gallery" class="gallery">
+<div class="thumb" style="background-image:url('anim1.jpg')" onclick="playVideo('anim1.mp4')"></div>
+<div class="thumb" style="background-image:url('anim2.jpg')" onclick="playVideo('anim2.mp4')"></div>
+</div>
+
+<div id="model-gallery" class="gallery">
+<div class="thumb" style="background-image:url('model1.jpg')" onclick="playVideo('model1.mp4')"></div>
+</div>
+
+<video id="player" controls></video>
 
 </div>
 </div>
+
+<!-- ================= SCRIPT ================= -->
 
 <script>
 
-function openCategory(type){
+const texts=["VIDEO EDITOR","2D ANIMATOR","3D MODELER"];
+let index=0;
+let char=0;
+
+function typingEffect(){
+let current=texts[index];
+document.getElementById("typing").innerHTML=current.slice(0,char++);
+if(char>current.length){
+setTimeout(()=>{char=0;index=(index+1)%texts.length;},1200);
+}
+}
+setInterval(typingEffect,100);
+
+/* POPUP FUNCTIONS */
+
+function openGallery(type){
 document.getElementById("popup").style.display="flex";
+document.getElementById("main").classList.add("blur");
 
-let content = "";
+hideAll();
+hidePlayer();
 
-if(type==="edit"){
-content = `
-<div class="video-list">
-<button onclick="playVideo('XiGuOnlXjk0')">Gym Edit 1</button>
-<button onclick="playVideo('DkTYBo2IOmU')">Gym Edit 2</button>
-<button onclick="playVideo('qlrZJ-F7Lr8')">Gym Edit 3</button>
-<button onclick="playVideo('nn84931115s')">Car Edit</button>
-</div>
-<div id="player"></div>
-`;
+document.getElementById(type+"-gallery").style.display="flex";
 }
 
-if(type==="animation"){
-content = `
-<div class="video-list">
-<button onclick="playVideo('ybVklDroziM')">Animation 1</button>
-<button onclick="playVideo('uH9U-RK-XV8')">Animation 2</button>
-</div>
-<div id="player"></div>
-`;
+function hideAll(){
+document.getElementById("video-gallery").style.display="none";
+document.getElementById("animation-gallery").style.display="none";
+document.getElementById("model-gallery").style.display="none";
 }
 
-document.getElementById("content").innerHTML = content;
+function hidePlayer(){
+let v=document.getElementById("player");
+v.style.display="none";
+v.pause();
+v.removeAttribute("src");
 }
 
-function playVideo(id){
-document.getElementById("player").innerHTML =
-<iframe src="https://www.youtube.com/embed/${id}" frameborder="0" allowfullscreen></iframe>;
+function playVideo(src){
+let v=document.getElementById("player");
+v.style.display="block";
+v.src=src;
+v.play();
 }
 
 function closePopup(){
 document.getElementById("popup").style.display="none";
-document.getElementById("content").innerHTML="";
+document.getElementById("main").classList.remove("blur");
+hidePlayer();
 }
 
 </script>
