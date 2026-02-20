@@ -3,6 +3,8 @@
 <head>
 <title>Lord Portfolio</title>
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 
 *{
@@ -51,10 +53,11 @@ min-height:100vh;
 /* ================= HERO ================= */
 
 .hero{
-height:100vh;
+min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
+padding:20px;
 }
 
 .hero-card{
@@ -64,6 +67,8 @@ border-radius:25px;
 text-align:center;
 box-shadow:0 0 40px rgba(0,255,255,0.5);
 animation:float 3s ease-in-out infinite;
+max-width:500px;
+width:100%;
 }
 
 @keyframes float{
@@ -112,6 +117,7 @@ transform:scale(1.1);
 .skills{
 text-align:center;
 margin:40px 0;
+padding:0 15px;
 }
 
 .skills h2{
@@ -152,21 +158,22 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.35);
+background:rgba(0,0,0,0.4);
 backdrop-filter: blur(18px);
 display:none;
 justify-content:center;
 align-items:center;
 z-index:999;
+padding:15px;
 }
 
 .popup-box{
 background:#111;
 padding:25px;
 border-radius:20px;
-width:85%;
+width:100%;
 max-width:900px;
-max-height:85vh;
+max-height:90vh;
 overflow-y:auto;
 }
 
@@ -215,6 +222,45 @@ background:rgba(0,0,0,0.25);
 box-shadow:0 0 50px rgba(0,255,255,0.8);
 }
 
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width:768px){
+
+.hero-card{
+padding:30px;
+}
+
+.hero-card h1{
+font-size:26px;
+}
+
+.typing{
+font-size:18px;
+}
+
+.hero-card button,
+.insta-btn{
+padding:10px 20px;
+font-size:14px;
+}
+
+.skill-btn{
+padding:10px 18px;
+font-size:14px;
+margin:8px;
+}
+
+.thumb{
+width:45%;
+height:90px;
+}
+
+video{
+max-height:50vh;
+}
+
+}
+
 </style>
 </head>
 
@@ -253,8 +299,6 @@ box-shadow:0 0 50px rgba(0,255,255,0.8);
 
 </div>
 
-<!-- ================= POPUP ================= -->
-
 <div class="popup" id="popup">
 <div class="popup-box">
 
@@ -277,7 +321,6 @@ box-shadow:0 0 50px rgba(0,255,255,0.8);
 <div class="thumb" style="background-image:url('model1.jpg')" onclick="playVideo('model1.mp4')"></div>
 </div>
 
-<!-- NEW ADS GALLERY -->
 <div id="ads-gallery" class="gallery">
 <div class="thumb" style="background-image:url('ad1.png')" onclick="playVideo('ad1.mp4')"></div>
 <div class="thumb" style="background-image:url('ad2.png')" onclick="playVideo('ad2.mp4')"></div>
