@@ -154,7 +154,6 @@ width:100%;
 height:100%;
 background:rgba(0,0,0,0.35);
 backdrop-filter: blur(18px);
--webkit-backdrop-filter: blur(18px);
 display:none;
 justify-content:center;
 align-items:center;
@@ -177,10 +176,10 @@ font-size:24px;
 cursor:pointer;
 }
 
-/* ================= THUMBNAILS ================= */
+/* ================= GALLERY ================= */
 
 .gallery{
-display:flex;
+display:none;
 flex-wrap:wrap;
 gap:20px;
 justify-content:center;
@@ -213,8 +212,6 @@ margin-top:20px;
 border-radius:15px;
 display:none;
 background:rgba(0,0,0,0.25);
-backdrop-filter: blur(25px);
--webkit-backdrop-filter: blur(25px);
 box-shadow:0 0 50px rgba(0,255,255,0.8);
 }
 
@@ -223,7 +220,6 @@ box-shadow:0 0 50px rgba(0,255,255,0.8);
 
 <body>
 
-<!-- EMAIL BUTTON -->
 <div class="top-bar">
 <a href="mailto:p0656265@gmail.com" class="email-btn">📧 Email</a>
 </div>
@@ -252,6 +248,7 @@ box-shadow:0 0 50px rgba(0,255,255,0.8);
 <button class="skill-btn" onclick="openGallery('video')">Video Editing</button>
 <button class="skill-btn" onclick="openGallery('animation')">2D Animation</button>
 <button class="skill-btn" onclick="openGallery('model')">3D Modeling</button>
+<button class="skill-btn" onclick="openGallery('ads')">Advertisement Edit</button>
 </div>
 
 </div>
@@ -280,16 +277,21 @@ box-shadow:0 0 50px rgba(0,255,255,0.8);
 <div class="thumb" style="background-image:url('model1.jpg')" onclick="playVideo('model1.mp4')"></div>
 </div>
 
+<!-- NEW ADS GALLERY -->
+<div id="ads-gallery" class="gallery">
+<div class="thumb" style="background-image:url('ad1.png')" onclick="playVideo('ad1.mp4')"></div>
+<div class="thumb" style="background-image:url('ad2.png')" onclick="playVideo('ad2.mp4')"></div>
+<div class="thumb" style="background-image:url('ad3.png')" onclick="playVideo('ad3.mp4')"></div>
+</div>
+
 <video id="player" controls></video>
 
 </div>
 </div>
 
-<!-- ================= SCRIPT ================= -->
-
 <script>
 
-const texts=["VIDEO EDITOR","2D ANIMATOR","3D MODELER"];
+const texts=["VIDEO EDITOR","2D ANIMATOR","3D MODELER","ADVERTISEMENT EDITOR"];
 let index=0;
 let char=0;
 
@@ -302,15 +304,11 @@ setTimeout(()=>{char=0;index=(index+1)%texts.length;},1200);
 }
 setInterval(typingEffect,100);
 
-/* POPUP FUNCTIONS */
-
 function openGallery(type){
 document.getElementById("popup").style.display="flex";
 document.getElementById("main").classList.add("blur");
-
 hideAll();
 hidePlayer();
-
 document.getElementById(type+"-gallery").style.display="flex";
 }
 
@@ -318,6 +316,7 @@ function hideAll(){
 document.getElementById("video-gallery").style.display="none";
 document.getElementById("animation-gallery").style.display="none";
 document.getElementById("model-gallery").style.display="none";
+document.getElementById("ads-gallery").style.display="none";
 }
 
 function hidePlayer(){
